@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/swiper-4.3.3.min.css">
+    <script src='js/flexible.js'></script>
+</head>
+
+<body>
+    <div class='wrap'>
+        <header class='header'>有书头条</header>
+        <div class='tit'>讨论版</div>
+        <div class='banner swiper-container'>
+            <ul class='swiper-wrapper'>
+                <li class='swiper-slide'>
+                    <dl>
+                        <dt><img src="img/pic1.png" alt=""></dt>
+                        <dd>论杂志封面的宠儿</dd>
+                    </dl>
+                </li>
+                <li class='swiper-slide'>
+                    <dl>
+                        <dt><img src="img/pic2.png" alt=""></dt>
+                        <dd>我只服特朗普</dd>
+                    </dl>
+                </li>
+                <li class='swiper-slide'>
+                    <dl>
+                        <dt><img src="img/pic1.png" alt=""></dt>
+                        <dd>论杂志封面的宠儿</dd>
+                    </dl>
+                </li>
+                <li class='swiper-slide'>
+                    <dl>
+                        <dt><img src="img/pic2.png" alt=""></dt>
+                        <dd>我只服特朗普</dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <main class='main'>
+            <div>
+                <div class='tit'>有书头条</div>
+                <div class='list'>
+                    <dl>
+                        <dd>
+                            <h2>你所不知道的转转有书</h2>
+                            <p>你真的不知道转转有书吗，真的不知道吗？ 你真的不知道转转有书吗，真的不知道吗？
+                            </p>
+                            <span>2018-05-10</span>
+                        </dd>
+                        <dt><img src="img/img1.png" alt=""></dt>
+                    </dl>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src='js/swiper-4.3.3.min.js'></script>
+<script src='js/better-scroll.js'></script>
+<script>
+    new Swiper('.banner');
+    new BScroll('.main');
+    var list = document.querySelector('.list');
+
+    function ajax(url, ck) {
+        var xml = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        xml.open('get', url, true);
+        xml.onload = function(res) {
+            if (res.target.status === 200 || res.target.status === 304) {
+                ck && ck(res.target.response);
+            }
+        }
+        xml.send();
+    }
+    ajax('http://localhost:8000/api/ajaxList', function(data) {
+        var json = JSON.parse(data);
+        var html = '';
+        json.data.map(function(v) {
+            html += `<dl>
+                        <dd>
+                            <h2>${v.tit}</h2>
+                            <p>${v.cont}
+                            </p>
+                            <span>${v.time}</span>
+                        </dd>
+                        <dt><img src="img/${v.pic}" alt=""></dt>
+                    </dl>`
+        })
+        list.innerHTML = html;
+    })
+</script>
+
+</html>

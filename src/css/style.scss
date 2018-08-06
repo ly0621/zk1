@@ -1,0 +1,82 @@
+@import "common.scss";
+.wrap {
+    width: 100%;
+    height: 100%;
+    @include display(flex, column);
+}
+
+.header {
+    width: 100%;
+    height: px2rem(50px);
+    line-height: px2rem(50px);
+    text-align: center;
+}
+
+.tit {
+    width: 100%;
+    height: px2rem(60px);
+    line-height: px2rem(60px);
+    text-align: center;
+    background: #eee;
+    font-size: px2rem(18px);
+}
+
+.banner {
+    width: 100%;
+    ul {
+        width: 100%;
+        li {
+            width: 38%;
+            img {
+                width: 100%;
+            }
+            dd {
+                width: 100%;
+                text-align: center;
+                font-size: px2rem(14px);
+            }
+        }
+    }
+}
+
+.main {
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+    .tit {
+        width: 100%;
+        height: px2rem(60px);
+        line-height: px2rem(60px);
+        text-align: center;
+        background: #eee;
+        font-size: px2rem(18px);
+    }
+}
+
+.list {
+    width: 100%;
+    dl {
+        width: 100%;
+        height: px2rem(150px);
+        @include display(flex);
+        dt {
+            width: px2rem(110px);
+            height: px2rem(90px);
+            img {
+                width: 100%;
+            }
+        }
+        dd {
+            h2 {
+                font-weight: 800;
+                line-height: 2;
+            }
+            p {
+                color: #666;
+            }
+            span {
+                color: #666;
+            }
+        }
+    }
+}
